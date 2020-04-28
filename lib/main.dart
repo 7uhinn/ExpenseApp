@@ -37,6 +37,8 @@ class MyHomePage extends StatelessWidget {
         title: Text('ExpenseApp'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -51,11 +53,32 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Card(
-            child: Text(
-              'Transactions',
-            ),
-          )
+          Column(
+            children: txn.map((t) {
+              return Card(
+                color: Colors.blue,
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(
+                        t.amt.toString(),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          t.title,
+                        ),
+                        Text(
+                          t.date.toString(),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
