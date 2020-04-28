@@ -17,10 +17,29 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New'),
+        title: Text('ExpenseApp'),
       ),
-      body: Center(
-        child: Text('New'),
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            child: Card(
+              color: Colors.red,
+              child: Text(
+                'Here goes the chart!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Card(
+            child: Text(
+              'Transactions',
+            ),
+          )
+        ],
       ),
     );
   }
