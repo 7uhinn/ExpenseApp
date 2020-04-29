@@ -4,9 +4,9 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 class Bar extends StatefulWidget {
   final String weekday;
   final String amount;
-  final int percent;
+  final double percent;
 
-  Bar(this.weekday,this.amount,this.percent);
+  Bar(this.weekday, this.amount, this.percent);
 
   @override
   _BarState createState() => _BarState();
@@ -20,17 +20,30 @@ class _BarState extends State<Bar> {
         Text(
           widget.weekday,
         ),
+        SizedBox(
+          height: 5,
+        ),
         Container(
-          height: 40,
+          height: 60,
           child: FAProgressBar(
-            currentValue: widget.percent*100,
+            currentValue: (widget.percent * 100).toInt(),
             direction: Axis.vertical,
             progressColor: Theme.of(context).primaryColor,
             size: 10,
             verticalDirection: VerticalDirection.up,
+            backgroundColor: Theme.of(context).accentColor,
           ),
         ),
-        Text(widget.amount),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          widget.amount,
+          style: TextStyle(
+            fontSize: 13,
+            color: Color.fromRGBO(100, 100, 100, 100),
+          ),
+        ),
       ],
     );
   }

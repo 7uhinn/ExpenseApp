@@ -26,24 +26,46 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekday).substring(0, 1),
         'amount': total
       };
-    });
+    }).reversed.toList();
   }
 
-  int get totalWeek{
-    return rectxn.fold(0,(sum, t) {
-      return sum+t['amount'];
+  int get totalWeek {
+    return rectxn.fold(0, (sum, t) {
+      return sum + t['amount'];
     });
   }
 
   @override
   Widget build(BuildContext context) {
     print(totalWeek);
-    return Card(
-      child: Row(
-        children: rectxn.map((t) {
-          int x = t['amount'];
-          return Bar(t['day'], '₹${t['amount']}', x~/totalWeek);
-        }).toList(),
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: rectxn.map((t) {
+              int x = t['amount'];
+              print(x);
+              return totalWeek != 0
+                  ? Flexible(
+                      child: Bar(
+                        t['day'],
+                        '₹${t['amount']}',
+                        x / totalWeek,
+                      ),
+                      fit: FlexFit.tight,
+                    )
+                  : Bar(
+                      t['day'],
+                      '₹${t['amount']}',
+                      0,
+                    );
+            }).toList(),
+          ),
+        ),
       ),
     );
   }

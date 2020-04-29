@@ -16,49 +16,33 @@ class TxnList extends StatelessWidget {
       child: txn.length != 0
           ? ListView.builder(
               itemBuilder: (ctx, idx) {
-                return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).primaryColor,
-                            width: 2,
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 3,
+                    horizontal: 8,
+                  ),
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 30,
+                          child: Text(
+                            '₹${txn[idx].amt}',
                           ),
                         ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          '₹ ${txn[idx].amt}',
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        title: Text(
+                          txn[idx].title,
+                          style: Theme.of(context).textTheme.title,
+                        ),
+                        subtitle: Text(
+                          DateFormat.yMMMEd().format(txn[idx].date) +
+                              ', ' +
+                              DateFormat.Hm().format(txn[idx].date),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            txn[idx].title,
-                            style: Theme.of(context).textTheme.title,
-                            textAlign: TextAlign.left,
-                          ),
-                          Text(
-                            DateFormat.MMMd().format(txn[idx].date) +
-                                ', ' +
-                                DateFormat.Hm().format(txn[idx].date),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                    ),
                   ),
                 );
               },

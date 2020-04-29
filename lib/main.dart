@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
         primarySwatch: Colors.deepOrange,
-        accentColor: Colors.deepOrange,
+        accentColor: Colors.orange[100],
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
                 title: GoogleFonts.robotoSlab(
@@ -59,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
       txnid: '2',
       title: 'Shoes',
-      amt: 100,
-      date: DateTime.now(),
+      amt: 300,
+      date: DateTime.parse("2020-04-29 20:18:04Z"),
     ),
   ];
 
