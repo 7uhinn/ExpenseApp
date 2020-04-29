@@ -50,7 +50,7 @@ class TxnList extends StatelessWidget {
                           ),
                           Text(
                             DateFormat.MMMd().format(txn[idx].date) +
-                                ',' +
+                                ', ' +
                                 DateFormat.Hm().format(txn[idx].date),
                             style: TextStyle(
                               color: Colors.grey,
@@ -65,14 +65,17 @@ class TxnList extends StatelessWidget {
               itemCount: txn.length,
             )
           : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'No transactions recorded yet!',
                   style: Theme.of(context).textTheme.title,
                 ),
+                SizedBox(
+                  height: 40,
+                ),
                 Container(
                   height: 200,
-                  alignment: Alignment.center,
                   child: Image.asset(
                     'images/waiting.png',
                     fit: BoxFit.cover,

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import './widgets/listtxnui.dart';
 import './widgets/newtxnui.dart';
+import './widgets/chartui.dart';
 
 import './models/transaction.dart';
 
@@ -49,19 +50,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> txn = [
-    // Transaction(
-    //   txnid: '1',
-    //   title: 'Food',
-    //   amt: 120,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   txnid: '2',
-    //   title: 'Shoes',
-    //   amt: 100,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      txnid: '1',
+      title: 'Food',
+      amt: 120,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      txnid: '2',
+      title: 'Shoes',
+      amt: 100,
+      date: DateTime.now(),
+    ),
   ];
+
+  List<Transaction> get rectxn {
+    return txn.where((t) {
+      return t.date.isAfter(
+        DateTime.now().subtract(
+          Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
+  }
 
   void addtxn(String t, int a) {
     Transaction tx = Transaction(
@@ -96,19 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                child: Text(
-                  'Here goes the charts!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            Chart(rectxn),
             TxnList(txn),
           ],
         ),
