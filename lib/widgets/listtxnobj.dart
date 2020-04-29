@@ -42,7 +42,7 @@ class _UserTxnState extends State<UserTxn> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTxn(txn,addtxn),
+        NewTxn(addtxn),
         TxnList(txn),
       ],
     );

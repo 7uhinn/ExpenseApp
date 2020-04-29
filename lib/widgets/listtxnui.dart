@@ -18,9 +18,10 @@ class TxnList extends StatelessWidget {
             child: Row(
               children: [
                 Container(
+                  width: 72,
                   margin: EdgeInsets.symmetric(
                     horizontal: 30,
-                    vertical: 5,
+                    vertical: 15,
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -44,13 +45,13 @@ class TxnList extends StatelessWidget {
                       txn[idx].title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 18,
                         color: Colors.black,
                       ),
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      DateFormat.yMMMMEEEEd().format(txn[idx].date),
+                      DateFormat.MMMd().format(txn[idx].date)+','+DateFormat.Hm().format(txn[idx].date),
                       style: TextStyle(
                         color: Colors.grey,
                       ),
