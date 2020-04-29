@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
-class NewTxn extends StatelessWidget {
+class NewTxn extends StatefulWidget {
   final Function addtxn;
 
   NewTxn(this.addtxn);
 
+  @override
+  _NewTxnState createState() => _NewTxnState();
+}
+
+class _NewTxnState extends State<NewTxn> {
   final tC = TextEditingController();
+
   final aC = TextEditingController();
 
   void submitData(){
@@ -16,7 +22,7 @@ class NewTxn extends StatelessWidget {
       return;
     }
 
-    addtxn(title,amount);
+    widget.addtxn(title,amount);
   }
 
   @override

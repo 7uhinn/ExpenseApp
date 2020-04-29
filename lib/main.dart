@@ -1,5 +1,9 @@
-import 'package:expense_app/widgets/listtxnobj.dart';
 import 'package:flutter/material.dart';
+
+import './widgets/listtxnui.dart';
+import './widgets/newtxnui.dart';
+
+import './models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +17,47 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  openSheet(BuildContext ctx){
+    showModalBottomSheet(context: ctx, builder: (_) {
+      return NewTxn(addtxn);
+    });
+  }
+
+  final List<Transaction> txn = [
+    Transaction(
+      txnid: '1',
+      title: 'Food',
+      amt: 120,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      txnid: '2',
+      title: 'Shoes',
+      amt: 100,
+      date: DateTime.now(),
+    ),
+  ];
+
+  void addtxn(String t,int a){
+    Transaction tx = Transaction(
+      txnid: DateTime.now().toString(),
+      title: t,
+      amt: a,
+      date: DateTime.now(),
+    );
+
+    setState((){
+      txn.add(tx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +68,7 @@ class MyHomePage extends StatelessWidget {
           IconButton(
             iconSize: 32,
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () => openSheet(context),
           )
         ],
       ),
@@ -46,7 +90,7 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            UserTxn(),
+            TxnList(txn),
           ],
         ),
       ),
@@ -55,7 +99,7 @@ class MyHomePage extends StatelessWidget {
           Icons.add,
           size: 35,
         ),
-        onPressed: () {},
+        onPressed: () => openSheet(context),
         backgroundColor: Colors.red,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
