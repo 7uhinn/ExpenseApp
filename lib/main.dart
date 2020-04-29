@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './widgets/listtxnui.dart';
 import './widgets/newtxnui.dart';
@@ -11,41 +12,58 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'ExpenseApp',
+      theme: ThemeData(
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: GoogleFonts.montserrat(
+                fontSize: 18,
+              ),
+            ),
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.deepOrange,
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: GoogleFonts.robotoSlab(
+                  fontSize: 20,
+                ),
+              ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  openSheet(BuildContext ctx){
-    showModalBottomSheet(context: ctx, builder: (_) {
-      return NewTxn(addtxn);
-    });
+  openSheet(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return NewTxn(addtxn);
+        });
   }
 
   final List<Transaction> txn = [
-    Transaction(
-      txnid: '1',
-      title: 'Food',
-      amt: 120,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      txnid: '2',
-      title: 'Shoes',
-      amt: 100,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   txnid: '1',
+    //   title: 'Food',
+    //   amt: 120,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   txnid: '2',
+    //   title: 'Shoes',
+    //   amt: 100,
+    //   date: DateTime.now(),
+    // ),
   ];
 
-  void addtxn(String t,int a){
+  void addtxn(String t, int a) {
     Transaction tx = Transaction(
       txnid: DateTime.now().toString(),
       title: t,
@@ -53,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now(),
     );
 
-    setState((){
+    setState(() {
       txn.add(tx);
     });
   }
@@ -62,8 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ExpenseApp'),
-        backgroundColor: Colors.red,
+        title: Text(
+          'ExpenseApp',
+        ),
         actions: <Widget>[
           IconButton(
             iconSize: 32,
@@ -80,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: double.infinity,
               child: Card(
-                color: Colors.red,
+                color: Theme.of(context).primaryColor,
                 child: Text(
                   'Here goes the charts!',
                   textAlign: TextAlign.center,
@@ -100,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
           size: 35,
         ),
         onPressed: () => openSheet(context),
-        backgroundColor: Colors.red,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

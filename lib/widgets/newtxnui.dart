@@ -14,15 +14,17 @@ class _NewTxnState extends State<NewTxn> {
 
   final aC = TextEditingController();
 
-  void submitData(){
-    final title =  tC.text;
+  void submitData() {
+    final title = tC.text;
     final amount = int.parse(aC.text);
-    
-    if(title.isEmpty || amount <= 0){
+
+    if (title.isEmpty || amount <= 0) {
       return;
     }
 
-    widget.addtxn(title,amount);
+    widget.addtxn(title, amount);
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -53,7 +55,7 @@ class _NewTxnState extends State<NewTxn> {
               child: Text(
                 'Add transaction',
                 style: TextStyle(
-                  color: Colors.red,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               onPressed: submitData,
