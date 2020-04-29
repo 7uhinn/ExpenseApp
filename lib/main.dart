@@ -24,25 +24,27 @@ class MyHomePage extends StatelessWidget {
         title: Text('ExpenseApp'),
         backgroundColor: Colors.red,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.red,
-              child: Text(
-                'Here goes the charts!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
+      body: SingleChildScrollView(
+              child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.red,
+                child: Text(
+                  'Here goes the charts!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-          ),
-          UserTxn(),
-        ],
+            UserTxn(),
+          ],
+        ),
       ),
     );
   }

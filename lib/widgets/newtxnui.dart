@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class NewTxn extends StatelessWidget {
   final List<Transaction> txn;
+  final Function addtxn;
 
-  NewTxn(this.txn);
+  NewTxn(this.txn,this.addtxn);
 
   final tC = TextEditingController();
   final aC = TextEditingController();
@@ -37,7 +38,7 @@ class NewTxn extends StatelessWidget {
                   color: Colors.red,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => addtxn(tC.text,int.parse(aC.text)),
             ),
           ],
         ),

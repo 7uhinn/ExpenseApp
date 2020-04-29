@@ -1,5 +1,5 @@
 class Transaction {
-  int txnid;
+  String txnid;
   String title;
   int amt;
   DateTime date;
