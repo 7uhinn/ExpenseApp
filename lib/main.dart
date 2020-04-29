@@ -25,7 +25,7 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       txnid: 2,
       title: 'Shoes',
-      amt: 1000,
+      amt: 100,
       date: DateTime.now(),
     ),
   ];
@@ -35,9 +35,10 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ExpenseApp'),
+        backgroundColor: Colors.red,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
@@ -45,7 +46,7 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               color: Colors.red,
               child: Text(
-                'Here goes the chart!',
+                'Here goes the charts!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -56,21 +57,45 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: txn.map((t) {
               return Card(
-                color: Colors.blue,
                 child: Row(
                   children: [
                     Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.red,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
                       child: Text(
-                        t.amt.toString(),
+                        '₹ ${t.amt}',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           t.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.left,
                         ),
                         Text(
-                          t.date.toString(),
+                          '${t.date}',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     )
