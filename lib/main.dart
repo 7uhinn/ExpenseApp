@@ -90,26 +90,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'ExpenseApp',
-        ),
-        actions: <Widget>[
-          IconButton(
-            iconSize: 32,
-            icon: Icon(Icons.add),
-            onPressed: () => openSheet(context),
-          )
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'ExpenseApp',
       ),
+      actions: <Widget>[
+        IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.add),
+          onPressed: () => openSheet(context),
+        )
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Chart(rectxn),
-            TxnList(txn,deltxn),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.224,
+              child: Chart(rectxn),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.776,
+              child: TxnList(txn, deltxn),
+            ),
           ],
         ),
       ),
