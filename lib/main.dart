@@ -24,14 +24,16 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-        primarySwatch: Colors.deepOrange,
-        accentColor: Colors.orange[100],
+        primarySwatch: Colors.teal,
+        accentColor: Colors.teal[100],
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
                 title: GoogleFonts.robotoSlab(
                   fontSize: 20,
+                  //color: Colors.blueGrey,
                 ),
               ),
+          color: Colors.teal,
         ),
       ),
       home: MyHomePage(),
@@ -103,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
     return Scaffold(
+      backgroundColor: Colors.blueGrey[900],
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(

@@ -26,9 +26,13 @@ class TxnList extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     child: ListTile(
                       leading: CircleAvatar(
+                        backgroundColor: Theme.of(context).accentColor,
                         radius: 30,
                         child: Text(
                           '₹${txn[idx].amt}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       title: Text(
