@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
               title: GoogleFonts.montserrat(
                 fontSize: 18,
               ),
+              button: GoogleFonts.montserrat(
+                fontSize: 17,
+                color: Colors.white,
+              ),
             ),
         primarySwatch: Colors.deepOrange,
         accentColor: Colors.orange[100],
@@ -49,20 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  final List<Transaction> txn = [
-    Transaction(
-      txnid: '1',
-      title: 'Food',
-      amt: 120,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      txnid: '2',
-      title: 'Shoes',
-      amt: 300,
-      date: DateTime.parse("2020-04-29 20:18:04Z"),
-    ),
-  ];
+  final List<Transaction> txn = [];
 
   List<Transaction> get rectxn {
     return txn.where((t) {
@@ -76,16 +67,24 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void addtxn(String t, int a) {
+  void addtxn(String t, int a, DateTime d) {
     Transaction tx = Transaction(
       txnid: DateTime.now().toString(),
       title: t,
       amt: a,
-      date: DateTime.now(),
+      date: d,
     );
 
     setState(() {
       txn.add(tx);
+    });
+  }
+
+  void deltxn(String id) {
+    setState(() {
+      txn.removeWhere((txn) {
+        return txn.txnid == id;
+      });
     });
   }
 
@@ -110,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Chart(rectxn),
-            TxnList(txn),
+            TxnList(txn,deltxn),
           ],
         ),
       ),

@@ -6,8 +6,9 @@ import '../models/transaction.dart';
 
 class TxnList extends StatelessWidget {
   final List<Transaction> txn;
+  final Function deltxn;
 
-  TxnList(this.txn);
+  TxnList(this.txn,this.deltxn);
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,13 @@ class TxnList extends StatelessWidget {
                               ', ' +
                               DateFormat.Hm().format(txn[idx].date),
                         ),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                          onPressed: () => deltxn(txn[idx].txnid),
+                        ),
                       ),
                     ),
                   ),
@@ -59,7 +67,7 @@ class TxnList extends StatelessWidget {
                   height: 40,
                 ),
                 Container(
-                  height: 200,
+                  height: 70,
                   child: Image.asset(
                     'images/waiting.png',
                     fit: BoxFit.cover,
